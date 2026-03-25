@@ -1,0 +1,23 @@
+# Logs
+*.log
+launcher.log
+
+# Python
+__pycache__/
+*.pyc
+.venv-gpu/
+
+# State
+.remote-jupyter/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Models (large files)
+models/
+*.safetensors
+*.ckpt
+*.pt
+*.bin
