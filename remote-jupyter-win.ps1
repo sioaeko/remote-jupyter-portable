@@ -383,8 +383,9 @@ function Get-ShortUrls {
 function Show-QrCode {
     param([string]$Text)
     try {
+        $env:QR_DATA = $Text
         & $venvPaths.PythonExe -c @"
-import sys
+import os, sys
 try:
     import qrcode
 except ImportError:
@@ -392,7 +393,7 @@ except ImportError:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--quiet', 'qrcode'])
     import qrcode
 qr = qrcode.QRCode(box_size=1, border=1)
-qr.add_data('$Text')
+qr.add_data(os.environ['QR_DATA'])
 qr.make(fit=True)
 qr.print_ascii(invert=True)
 "@ | Out-Host
